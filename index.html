@@ -90,15 +90,19 @@
         }
 
                 /* 页脚样式 */
+        /* 页脚样式 - 修复：添加白色背景 */
         .footer {
             padding: 20px;
             text-align: center;
-            font-size: 12px; /* 小字体 */
-            color: #666; /* 灰色字体，不抢眼 */
+            font-size: 12px; 
+            color: #666; 
             width: 100%;
-            margin-top: 50px; /* 与上部内容保持一定距离 */
-            box-sizing: border-box; /* 确保 padding 不会增加宽度 */
+            margin-top: 50px; 
+            box-sizing: border-box; 
+            background-color: white; /* **新增：消除底部的蓝色** */
+            transition: margin-left 0.5s; /* **新增：让页脚也能平滑移动** */
         }
+
 
         /* 确保主内容区域有足够的空间让页脚不重叠 */
         #main {
@@ -128,7 +132,7 @@
     <p>点击左上角的 ☰ 按钮来开启或关闭侧边栏。</p>
 </div>
 
-<footer class="footer">
+<footer id="myFooter" class="footer">
     © 2025 Molin's Personal Space | Powered by GitHub Pages | <a href="#" style="color:#666; text-decoration: none;">联系我</a>
 </footer>
 
@@ -149,6 +153,8 @@
             // 如果是关闭状态，就打开它
             sidebar.style.width = sidebarWidth;
             main.style.marginLeft = sidebarWidth; /* 主内容区向右推开 */
+            footer.style.marginLeft = sidebarWidth
+            
         }
     }
 </script>

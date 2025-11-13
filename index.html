@@ -1,163 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Molin的个人空间</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        /* 基础样式 */
-        body {
-            margin: 0;
-            height: 100vh; 
-            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); 
-            font-family: Arial, sans-serif;
-            overflow-x: hidden; /* 关键：防止侧边栏滑出时出现水平滚动条 */
-        }
-
-        /* 顶部导航栏样式 */
-        .top-navbar {
-            height: 50px; 
-            background-color: white; 
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 30; 
-            display: flex; 
-            align-items: center; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-        }
-
-        /* 侧边栏样式 */
-        .sidebar {
-            height: 100%; 
-            width: 0; 
-            position: fixed; 
-            z-index: 20; 
-            top: 0;
-            left: 0;
-            background-color: white; 
-            overflow-x: hidden; 
-            transition: 0.5s; /* 侧边栏宽度过渡 */
-            padding-top: 50px; 
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1); 
-        }
-
-        /* 侧边栏链接 */
-        .sidebar a {
-            padding: 15px 8px 15px 32px; 
-            text-decoration: none;
-            font-size: 18px; 
-            color: #333; 
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            color: #007bff; 
-            background-color: #f0f0f0; 
-        }
-        
-        /* 开关按钮样式 */
-        .openbtn {
-            font-size: 24px; 
-            cursor: pointer;
-            background: none; 
-            color: #333; 
-            padding: 0 15px; 
-            border: none; 
-            outline: none; 
-            height: 100%; 
-            display: flex; 
-            align-items: center;
-        }
-
-        .openbtn:hover {
-            background-color: #f0f0f0; 
-        }
-
-        /* 主内容区域 - 核心修改：使用 transform 替代 margin-left */
-        #main {
-            padding: 20px;
-            margin-top: 50px; 
-            min-height: calc(100vh - 120px);
-            width: 100%; /* 确保它占据全部宽度 */
-            box-sizing: border-box; 
-            transition: transform 0.5s; /* 平移过渡 */
-        }
-
-        /* 页脚样式 - 核心修改：使用 transform 替代 margin-left */
-        #myFooter {
-            padding: 20px;
-            text-align: center;
-            font-size: 12px; 
-            color: #666; 
-            width: 100%; /* 确保它占据全部宽度 */
-            box-sizing: border-box; 
-            margin-top: 50px; 
-            background-color: white; 
-            transition: transform 0.5s; /* 平移过渡 */
-            z-index: 10; 
-        }
-
-        /* 响应式调整 */
-        @media screen and (max-width: 600px) {
-            .sidebar a {
-                font-size: 16px;
-            }
-            .sidebar {
-                padding-top: 60px;
-            }
-        }
-    </style>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <aside id="sidebar">
+        <nav>
+            <a href="index.html" class="nav-item active">主页面</a>
+            <a href="jilu.html" class="nav-item">记录</a>
+            <a href="menghua.html" class="nav-item">梦话</a>
+            <a href="qita.html" class="nav-item">其他</a>
+        </nav>
+    </aside>
 
-<div class="top-navbar">
-    <button class="openbtn" onclick="toggleNav()">☰</button> 
-    <span style="font-size:20px; color:#333; margin-left:15px;">Molin的个人空间</span>
-</div>
+    <div id="content-container">
+        <header id="top-bar">
+            <button id="sidebar-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span id="page-title">主页面</span>
+        </header>
 
-<div id="mySidebar" class="sidebar">
-    <a href="index.html">🏠 主页面</a>
-    <a href="#">📝 记录</a> 
-    <a href="#">😴 梦话</a> 
-    <a href="#">📚 其他</a> 
-</div>
+        <main id="main-content" class="page-padding">
+            <section id="homepage">
+                <h1 class="main-title">Molin的个人空间</h1>
+                <p class="subtitle">点击左上角查看目录</p>
+                <p class="subtitle">希望你能找到好东西</p>
+                <p class="subtitle">也希望我能找到好东西</p>
+            </section>
+        </main>
 
-<div id="main">
-    <h1>欢迎来到 Molin 的个人空间！</h1>
-    <p>点击左上角的 ☰ 按钮来开启或关闭侧边栏。</p>
-    <p>现在主内容区会平滑地平移，而不是被压缩。网站架构已完成，下一步就是填充你的精彩内容了！</p>
-</div>
+        <footer id="footer">
+            2025 Molin's Personal Space | Powered by GitHub Pages | LOVE
+        </footer>
+    </div>
 
-<footer id="myFooter" class="footer">
-    © 2025 Molin's Personal Space | Powered by GitHub Pages | <a href="#" style="color:#666; text-decoration: none;">联系我</a>
-</footer>
+    <script>
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const contentContainer = document.getElementById('content-container');
 
-
-<script>
-    /* JavaScript 代码控制开关 */
-    function toggleNav() {
-        const sidebar = document.getElementById("mySidebar");
-        const main = document.getElementById("main");
-        const footer = document.getElementById("myFooter");
-        const sidebarWidth = '250px'; 
-        const transformValue = `translateX(${sidebarWidth})`; // 位移值
-
-        if (sidebar.style.width === sidebarWidth) {
-            // 关闭状态：侧边栏宽度归零，内容区和页脚平移归位
-            sidebar.style.width = '0';
-            main.style.transform = 'translateX(0)';
-            footer.style.transform = 'translateX(0)';
-        } else {
-            // 打开状态：侧边栏设置宽度，内容区和页脚向右平移
-            sidebar.style.width = sidebarWidth;
-            main.style.transform = transformValue; 
-            footer.style.transform = transformValue; 
-        }
-    }
-</script>
-
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            contentContainer.classList.toggle('shifted');
+        });
+    </script>
 </body>
 </html>

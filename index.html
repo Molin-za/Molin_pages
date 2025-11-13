@@ -4,13 +4,107 @@
     <title>Molin的个人空间</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon"> 
     <style>
+        /* 基础样式 - 保留原有背景 */
         body {
-          margin: 0;
-          height: 100vh; 
-          background: linear-gradient(to bottom, #87CEEB, #FFFFFF); 
+            margin: 0;
+            height: 100vh; 
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); 
+            font-family: Arial, sans-serif;
+            transition: margin-left 0.5s; /* 主内容区移动的动画 */
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            height: 100%; /* 占满整个高度 */
+            width: 0; /* 默认隐藏 (宽度为 0) */
+            position: fixed; /* 固定位置 */
+            z-index: 10; /* 确保在最上层 */
+            top: 0;
+            left: 0;
+            background-color: #333; /* 深色背景 */
+            overflow-x: hidden; /* 隐藏超出宽度的内容 */
+            transition: 0.5s; /* 关键：所有变化都有 0.5 秒的过渡动画 */
+            padding-top: 60px; /* 顶部留出空间 */
+        }
+
+        /* 侧边栏中的链接样式 */
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        /* 链接悬停效果 */
+        .sidebar a:hover {
+            color: #f1f1f1;
+            background-color: #555;
+        }
+
+        /* 侧边栏的关闭按钮 (可选，这里用开关按钮控制) */
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* 开关侧边栏的按钮样式 */
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: fixed; /* 固定在左上角 */
+            top: 10px;
+            left: 10px;
+            z-index: 20; /* 确保在侧边栏上方 */
+        }
+
+        .openbtn:hover {
+            background-color: #444;
         }
     </style>
 </head>
 <body>
-    </body>
+
+<div id="mySidebar" class="sidebar">
+    <a href="#">🏠 主页面</a>
+    <a href="#">📝 记录</a>
+    <a href="#">😴 梦话</a>
+    <a href="#">📚 其他</a>
+</div>
+
+<button class="openbtn" onclick="toggleNav()">☰ 打开/关闭菜单</button>  
+
+<div id="main">
+    <h1>欢迎来到 Molin 的个人空间！</h1>
+    <p>点击左上角的按钮来开启或关闭侧边栏。</p>
+    </div>
+
+<script>
+    /* JavaScript 代码控制开关 */
+    function toggleNav() {
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
+        
+        // 检查侧边栏当前的宽度
+        if (sidebar.style.width === '250px') {
+            // 如果是打开状态，就关闭它
+            sidebar.style.width = '0';
+            main.style.marginLeft = '0';
+        } else {
+            // 如果是关闭状态，就打开它
+            sidebar.style.width = '250px';
+            main.style.marginLeft = '250px'; /* 主内容区向右推开，避免内容被遮挡 */
+        }
+    }
+</script>
+
+</body>
 </html>

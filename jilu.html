@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molin的个人空间 - 记录</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <aside id="sidebar">
+        <nav>
+            <a href="index.html" class="nav-item">主页面</a>
+            <a href="jilu.html" class="nav-item active">记录</a>
+            <a href="menghua.html" class="nav-item">梦话</a>
+            <a href="qita.html" class="nav-item">其他</a>
+        </nav>
+    </aside>
+
+    <div id="content-container">
+        <header id="top-bar">
+            <button id="sidebar-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span id="page-title">记录</span>
+        </header>
+
+        <main id="main-content" class="page-padding">
+            <h1 class="main-title">记录生活的一角</h1>
+            
+            <div id="notes-container">
+                <p style="text-align: center;">正在加载笔记中...</p>
+            </div>
+            
+            <div id="pagination"></div>
+        </main>
+
+        <footer id="footer">
+            2025 Molin's Personal Space | Powered by GitHub Pages | LOVE
+        </footer>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const contentContainer = document.getElementById('content-container');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            contentContainer.classList.toggle('shifted');
+        });
+    </script>
+
+    <script src="jilu.js"></script>
+</body>
+</html>

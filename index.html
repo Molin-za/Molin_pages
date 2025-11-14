@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Molin的个人空间</title>/*网页标题*/
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> /*网页图标*/
+    <style>
+
+        body {
+            margin: 0;
+            min-height: 100vh; 
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /*渐变背景*/
+            font-family: Arial, sans-serif;
+            transition: margin-left 0.5s; 
+        }
+
+        /* 顶部导航栏 */
+        .top-navbar {
+            height: 50px; 
+            background-color: white; 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 30; 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+
+        /* 侧边栏*/
+        .sidebar {
+            height: 100%; 
+            width: 0; 
+            position: fixed; 
+            z-index: 20; 
+            top: 0;
+            left: 0;
+            background-color: white; 
+            overflow-x: hidden; 
+            transition: 0.5s; 
+            padding-top: 50px; 
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1); 
+        }
+
+        /* 侧边栏中的链接 */
+        .sidebar a {
+            padding: 15px 8px 15px 32px; 
+            text-decoration: none;
+            font-size: 18px; 
+            color: #333; 
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #007bff; 
+            background-color: #f0f0f0; 
+        }
+        
+        /* 开关侧边栏按钮 */
+        .openbtn {
+            font-size: 24px; 
+            cursor: pointer;
+            background: none; 
+            color: #333; 
+            padding: 0 15px; 
+            border: none; 
+            outline: none; 
+            height: 100%; 
+            display: flex; 
+            align-items: center;
+        }
+
+        .openbtn:hover {
+            background-color: #f0f0f0; 
+        }
+
+
+        /* 当屏幕宽度较小时，侧边栏宽度可以小一点 */
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 16px;}
+        }
+
+        /* 页脚 */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px; 
+            color: #666; 
+            width: 100%;
+            margin-top: 50px; 
+            box-sizing: border-box; 
+        }
+
+        /* 主内容 */
+        #main {
+            padding: 20px;
+            min-height: calc(100vh - 120px); 
+            transition: margin-left 0.5s; 
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="top-navbar">
+    <button class="openbtn" onclick="toggleNav()">☰</button> <span style="font-size:20px; color:#333; margin-left:15px;">主页面</span>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="index.html"> 主页面</a>
+    <a href="write.html"> 记录</a>
+    <a href="dream.html"> 梦话</a>
+    <a href="other.html"> 其他</a>
+    <a href="about.html"> 关于</a>
+</div>
+
+<div id="main">
+    <h1>欢迎来到 Molin 的个人空间！</h1>
+    <p>点击左上角的 ☰ 按钮来开启或关闭侧边栏。</p>
+</div>
+
+<footer class="footer">
+    © 2025 Molin's Personal Space | Powered by GitHub Pages | <a href="#" style="color:#666; text-decoration: none;">LOVE</a>
+</footer>
+
+    
+<script>
+    /* 代码控制开关 */
+    function toggleNav() {
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
+        const sidebarWidth = '250px'; 
+
+        if (sidebar.style.width === sidebarWidth) {
+            sidebar.style.width = '0';
+            main.style.marginLeft = '0';
+        } else {
+            sidebar.style.width = sidebarWidth;
+            main.style.marginLeft = sidebarWidth; 
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -4,11 +4,11 @@
     <title>Molin的个人空间</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        /* === 全局和基础样式 === */
+        /* === 基础样式 === */
         body {
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* 渐变背景 */
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); 
             font-family: Arial, sans-serif;
             transition: margin-left 0.5s;
         }
@@ -98,35 +98,29 @@
             box-sizing: border-box;
         }
 
-        /* === 主内容区（Main） === */
+        /* === 主内容区 === */
         #main {
             padding: 20px;
             margin-top: 50px; 
             min-height: calc(100vh - 120px);
             transition: margin-left 0.5s;
-        }
-        
-        /* ==================================== */
-        /* === 📝 文章卡片和分页样式 (新增) === */
-        /* ==================================== */
+        }        
         
         /* --- 文章卡片样式 --- */
         .article-card {
             background-color: white;
-            border-radius: 12px; /* 圆角矩形 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影，增加层次感 */
+            border-radius: 12px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 25px;
-            margin-bottom: 25px; /* 竖直间距 */
+            margin-bottom: 25px; 
             transition: transform 0.3s ease;
         }
 
-        /* 鼠标悬停效果（可选）*/
         .article-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* 确保容器中的内容竖直排列 */
         #card-container {
             display: flex;
             flex-direction: column;
@@ -154,7 +148,7 @@
         }
 
         .page-button.active {
-            background-color: #87CEEB; /* 使用您 body 背景中的颜色 */
+            background-color: #87CEEB; 
             color: white;
             border-color: #87CEEB;
             cursor: default;
@@ -207,12 +201,6 @@
             }
         }
         
-        /* ==================================== */
-        /* === 📝 Markdown 加载和分页逻辑 (新增) === */
-        /* ==================================== */
-
-        // 📝 步骤一：定义您的 Markdown 文件列表
-        // 注意：请确保这些文件路径正确，文件存在！
         const MD_FILES = [
             'articles/post1.md',
             'articles/post2.md',
@@ -221,15 +209,15 @@
             'articles/post5.md',
             'articles/post6.md',
             'articles/post7.md',
-            // ... 您可以在这里继续添加您的文章文件 ...
+            // ... 继续添加您的文章文件 ...
         ];
 
-        const ITEMS_PER_PAGE = 3; // 每页最大矩形块数量
+        const ITEMS_PER_PAGE = 3; 
         let currentPage = 1;
-        let allCards = []; // 用于存储所有文章的 HTML 字符串
+        let allCards = []; 
 
 
-        // 1. 批量加载和渲染卡片
+        // 批量加载和渲染卡片
         async function loadAllArticles() {
             const fetchPromises = MD_FILES.map(file => 
                 fetch(file).then(res => {
@@ -243,7 +231,7 @@
 
             const markdownTexts = await Promise.all(fetchPromises);
             const container = document.getElementById('card-container');
-            container.innerHTML = ''; // 清空加载提示
+            container.innerHTML = ''; 
 
             markdownTexts.forEach((mdText, index) => {
                 if (mdText.startsWith('加载失败')) {
@@ -254,64 +242,56 @@
                                     </div>`;
                     allCards.push(errorCard);
                 } else {
-                    // 使用 marked.js 将 MD 转换为 HTML
                     const htmlContent = marked.parse(mdText);
-                    // 包装在圆角矩形卡片中
                     const cardHtml = `<div class="article-card">${htmlContent}</div>`;
                     allCards.push(cardHtml);
                 }
             });
             
-            // 加载完成后，显示第一页内容和页码
             displayPage(currentPage);
             renderPaginationControls();
         }
 
-        // 2. 显示特定页面的卡片
+        // 显示特定页面的卡片
         function displayPage(page) {
             currentPage = page;
             const container = document.getElementById('card-container');
-            container.innerHTML = ''; // 清空当前页
+            container.innerHTML = ''; 
 
             const start = (page - 1) * ITEMS_PER_PAGE;
             const end = start + ITEMS_PER_PAGE;
 
-            // 获取并插入当前页的卡片
             const cardsToShow = allCards.slice(start, end);
             container.innerHTML = cardsToShow.join('');
             
-            // 重新渲染页码控制，更新激活状态
             renderPaginationControls();
 
-            // 滚动到主内容区域的顶部（避开固定导航栏）
             document.getElementById('main').scrollIntoView({ behavior: 'smooth', block: 'start' }); 
         }
 
 
-        // 3. 渲染页码按钮
+        // 页码按钮
         function renderPaginationControls() {
             const totalPages = Math.ceil(allCards.length / ITEMS_PER_PAGE);
             const controls = document.getElementById('pagination-controls');
-            controls.innerHTML = ''; // 清空旧按钮
+            controls.innerHTML = ''; 
 
             for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement('button');
                 button.className = `page-button ${i === currentPage ? 'active' : ''}`;
                 button.textContent = i;
-                // 绑定点击事件，点击后调用 displayPage()
                 button.onclick = () => displayPage(i); 
                 controls.appendChild(button);
             }
         }
 
-        // 4. 页面加载入口
         window.onload = function() {
             window.scrollTo(0, 0);
-            // 启动文章加载
             loadAllArticles();
         };
 
     </script>
 
 </body>
+
 </html>

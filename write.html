@@ -219,8 +219,9 @@
 
         // 批量加载和渲染卡片
         async function loadAllArticles() {
+            const timestamp = new Date().getTime();
             const fetchPromises = MD_FILES.map(file => 
-                fetch(file).then(res => {
+                fetch(`${file}?t=${timestamp}`).then(res => {
                     if (!res.ok) throw new Error(`HTTP ${res.status}`);
                     return res.text();
                 }).catch(e => {
@@ -295,3 +296,4 @@
 </body>
 
 </html>
+
